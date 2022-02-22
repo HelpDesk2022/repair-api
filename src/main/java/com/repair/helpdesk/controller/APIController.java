@@ -17,6 +17,6 @@ public class APIController {
         return ResponseEntity.status(HttpStatus.OK).body(BoasVindas.builder()
                 .version("1.0.0")
                 .appName("Help Desk API")
-                .description("Uma api para gerenciar um sistema de controle de chamados."));
+                .description("Uma api para gerenciar um sistema de controle de chamados.").build());
     }
 }
