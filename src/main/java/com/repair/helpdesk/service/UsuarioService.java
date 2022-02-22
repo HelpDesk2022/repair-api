@@ -10,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -35,6 +37,15 @@ public class UsuarioService {
             throw new DataIntegrityViolationException("Usuário já existe na base de dados!");
         } catch (Exception e) {
             throw new RuntimeException("Erro ao cadastrar um usuário");
+        }
+    }
+
+    public ResponseEntity listarUsuarios() {
+        try {
+            List<Usuario> listaUsuario = this.usuarioRepository.findAll();
+            return listaUsuario.isEmpty() ? ResponseEntity.status(HttpStatus.NO_CONTENT).build() : ResponseEntity.status(HttpStatus.OK).body(listaUsuario);
+        } catch (Exception e) {
+            throw new RuntimeException("Erro ao encontrar os usuários");
         }
     }
 

@@ -25,4 +25,13 @@ public class CadastroController {
             return ResponseEntity.status(400).body(Response.builder().message(e.getMessage()).build());
         }
     }
+
+    @GetMapping
+    public ResponseEntity listarUsuarios() {
+        try {
+            return this.usuarioService.listarUsuarios();
+        } catch (Exception e) {
+            return ResponseEntity.status(400).body(Response.builder().message(e.getMessage()).build());
+        }
+    }
 }
