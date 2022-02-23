@@ -3,6 +3,7 @@ package com.repair.helpdesk.service;
 import com.repair.helpdesk.model.Login;
 import com.repair.helpdesk.model.Usuario;
 import com.repair.helpdesk.repository.UsuarioRepository;
+import com.repair.helpdesk.request.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,10 +27,10 @@ public class LoginService {
             Optional<Usuario> loginRealizado = listaUsuario.stream().filter(u -> u.getEmail().equals(login.getEmail()) &&
                     u.getPassword().equals(login.getPassword())).findFirst();
 
-            return loginRealizado.isPresent() ? ResponseEntity.status(HttpStatus.OK).body("Login realizado com sucesso") :
-                    ResponseEntity.status(HttpStatus.OK).body("Email ou senha inválida");
+            return loginRealizado.isPresent() ? ResponseEntity.status(HttpStatus.OK).body(Response.builder().message("Login realizado com sucesso").build()) :
+                    ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Response.builder().message("Email ou senha inválida").build());
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.OK).body("Não existe esse usuário");
+            return ResponseEntity.status(HttpStatus.OK).body(Response.builder().message("Não existe esse usuário").build());
         }
     }
 }
