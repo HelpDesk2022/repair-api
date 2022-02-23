@@ -19,11 +19,17 @@ public class LoginService {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
-    public ResponseEntity login(Login login){
-        List<Usuario> listaUsuario = this.usuarioRepository.findAll();
-        Optional<Usuario> loginRealizado = listaUsuario.stream().filter(u-> u.getEmail().equals(login.getEmail()) &&
-                u.getPassword().equals(login.getPassword())).findFirst();
-        return loginRealizado.isPresent() ? ResponseEntity.status(HttpStatus.OK).body("Login realizado com sucesso") :
-                ResponseEntity.status(HttpStatus.OK).body("Email ou senha inválida");
+    public ResponseEntity login(Login login) {
+        try {
+            List<Usuario> listaUsuario = this.usuarioRepository.findAll();
+
+            Optional<Usuario> loginRealizado = listaUsuario.stream().filter(u -> u.getEmail().equals(login.getEmail()) &&
+                    u.getPassword().equals(login.getPassword())).findFirst();
+
+            return loginRealizado.isPresent() ? ResponseEntity.status(HttpStatus.OK).body("Login realizado com sucesso") :
+                    ResponseEntity.status(HttpStatus.OK).body("Email ou senha inválida");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.OK).body("Não existe esse usuário");
+        }
     }
 }
