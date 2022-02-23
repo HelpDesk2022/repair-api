@@ -33,4 +33,10 @@ public class Usuario {
     @NotNull
     @OneToOne(cascade = CascadeType.PERSIST)
     private Cargo cargo;
+
+    @NotNull
+    private String email;
+
+    @NotNull
+    private  String password;
 }
