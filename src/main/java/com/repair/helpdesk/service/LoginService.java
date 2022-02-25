@@ -30,7 +30,7 @@ public class LoginService {
             return loginRealizado.isPresent() ? ResponseEntity.status(HttpStatus.OK).body(Response.builder().message("Login realizado com sucesso").build()) :
                     ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Response.builder().message("Email ou senha inválida").build());
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Response.builder().message("Não existe esse usuário").build());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Response.builder().message("Email ou senha inválida").build());
         }
     }
 }
