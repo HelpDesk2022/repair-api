@@ -1,9 +1,11 @@
 package com.repair.helpdesk.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @NoArgsConstructor
@@ -24,22 +26,25 @@ public class Chamado {
     @NotNull
     private String descricao;
 
-    private String dataHoraCriacao;
-
-    private String dataHoraFinalizacao;
-
-    @OneToOne(cascade = CascadeType.PERSIST, orphanRemoval = true)
-    private Status status;
+    @NotNull
+    @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
+    private LocalDateTime dataHoraCriacao;
 
     @NotNull
-    @OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY, targetEntity = Comentario.class, orphanRemoval = true)
+    @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
+    private LocalDateTime dataHoraFinalizacao;
+
+    @OneToOne(orphanRemoval = true)
+    private Status status;
+
+    @OneToMany(fetch = FetchType.LAZY, targetEntity = Comentario.class, orphanRemoval = true)
     private List<Comentario> comentarios;
 
     @NotNull
-    @OneToOne(cascade = CascadeType.PERSIST, orphanRemoval = true)
+    @OneToOne(orphanRemoval = true)
     private Usuario usuario;
 
     @NotNull
-    @OneToOne(cascade = CascadeType.PERSIST, orphanRemoval = true)
+    @OneToOne(orphanRemoval = true)
     private Prioridade prioridade;
 }

@@ -1,6 +1,5 @@
 package com.repair.helpdesk.controller;
 
-import com.repair.helpdesk.model.Cargo;
 import com.repair.helpdesk.model.Chamado;
 import com.repair.helpdesk.request.Response;
 import com.repair.helpdesk.service.ChamadoService;
@@ -19,7 +18,7 @@ public class ChamadoController {
     private ChamadoService chamadoService;
 
     @PostMapping
-    public ResponseEntity cadastrarCargo(@RequestBody @Valid Chamado dadosChamado) {
+    public ResponseEntity cadastrarChamado(@RequestBody @Valid Chamado dadosChamado) {
         try {
             return this.chamadoService.cadastroChamado(dadosChamado);
         } catch (Exception e) {
@@ -28,7 +27,7 @@ public class ChamadoController {
     }
 
     @GetMapping
-    public ResponseEntity listaChamados(@RequestBody @Valid Cargo dadosCargo) {
+    public ResponseEntity listaChamados() {
         try {
             return this.chamadoService.listarChamados();
         } catch (Exception e) {

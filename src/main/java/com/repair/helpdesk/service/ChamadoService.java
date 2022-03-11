@@ -32,7 +32,7 @@ public class ChamadoService {
     public ResponseEntity listarChamados() {
         try {
             List<Chamado> listaChamado = this.chamadoRepository.findAll();
-            return listaChamado.isEmpty() ? ResponseEntity.status(HttpStatus.OK).body(listaChamado) : ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+            return listaChamado.isEmpty() ? ResponseEntity.status(HttpStatus.NO_CONTENT).build() : ResponseEntity.status(HttpStatus.OK).body(listaChamado);
         } catch (Exception e) {
             throw new RuntimeException("Erro ao listar os chamados");
         }

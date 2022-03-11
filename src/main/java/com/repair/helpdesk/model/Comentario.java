@@ -21,7 +21,7 @@ public class Comentario {
     private String descricao;
 
     @NotNull
-    @OneToOne(cascade = CascadeType.PERSIST, orphanRemoval = true)
+    @OneToOne(orphanRemoval = true)
     private Usuario usuarioCriacao;
 
 }

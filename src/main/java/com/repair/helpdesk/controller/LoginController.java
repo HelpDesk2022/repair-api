@@ -1,10 +1,8 @@
 package com.repair.helpdesk.controller;
 
 import com.repair.helpdesk.model.Login;
-import com.repair.helpdesk.model.Usuario;
 import com.repair.helpdesk.request.Response;
 import com.repair.helpdesk.service.LoginService;
-import com.repair.helpdesk.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
